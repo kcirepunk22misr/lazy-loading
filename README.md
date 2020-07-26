@@ -1,27 +1,32 @@
 # LazyLoading
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
+Este es un ejemplo practico, de como implementar lazy loading en angular correctamente.
 
-## Development server
+### Reconstruir modulos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+npm install
+```
 
-## Code scaffolding
+### Iniciar Server
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+ng serve -o
+```
 
-## Build
+## ¿Que pasa cuando no implementas Lazy Loading?
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+<p style="text-align: justify;">
+En una aplicacion de angular normalmente, cuando vas a comenzar a dividir tu aplicacion en modulos diferentes para cada tarea diferentes, lo importas en el ```app.module.ts```, hasta ahi todo normal, pero que pasaria si tu aplicacion es enorme y tiene miles de modulos, entonces apenas que tu aplicacion inicie que termine de carga en navegador, no importa en que ruta te encuentres se va a cargar toda esa logica de los modulos de tu aplicacion, por ejemplos que estes en la pagina de login, y al mismo tiempo te cargue la logica del registro, y te preguntaras ¿Porque, si aun no me encuentro en esa ruta?, esto pasaria si no implementas Lazy Loading
+</p>
 
-## Running unit tests
+## ¿Porque implementar Lazy Loading en tu aplicacion?
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+<p style="text-align: justify;"> 
+Implementando Lazy Loading le das a tu aplicacion un performance potente, ya que no estarias cargando todos tus modulos apenas inicie la aplicacion, si no que cargara los modulos dependiendo en la ruta que te encuentres, si estas en la ruta de login solo cargara el login modulo de login y si estas en la de registro solo cargara la de registro, ya que cuando tu aplicacion encuentre una ruta definida lo que va hacer es cargar un modulo al cual seleccionaste. Cuando usamos Lazy Loading hacemos llamado de un módulo mediante el sistema de rutas de Angular y este módulo a su vez tiene rutas hijas que se encargan de cargar el componente solicitado por el usuario.
+</p>
 
-## Running end-to-end tests
+## Caracteristicas de Lazy Loading
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Cada modulo debe tener su propio routing
+- No tiene que importan su modulo en el `app.module.ts`, ya los modulos se cargaran dinamicamente en las rutas
